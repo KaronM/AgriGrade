@@ -1,5 +1,7 @@
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
 import { Clock, Users } from 'lucide-react-native';
+
+
 type Recipe = {
   id: string;
   title: string;
@@ -33,7 +35,7 @@ const SAMPLE_RECIPES: Recipe[] = [
 ];
 
 export default function RecipesScreen() {
-  const renderRecipeCard =  ({ item }: { item: Recipe }) => (
+  const renderRecipeCard = ({ item }: { item: Recipe }) => (
     <TouchableOpacity style={styles.card}>
       <Image source={{ uri: item.image }} style={styles.cardImage} />
       <View style={styles.cardContent}>
@@ -62,13 +64,14 @@ export default function RecipesScreen() {
       <FlatList
         data={SAMPLE_RECIPES}
         renderItem={renderRecipeCard}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.list}
       />
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

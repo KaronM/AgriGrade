@@ -13,21 +13,19 @@ interface PlantData {
   usages: string[];
 }
 
-const [plantData, setPlantData] = useState<PlantData>({
-  name: '',
-  scientificName: '',
-  edible: false,
-  confidence: 0,
-  description: '',
-  usages: [],
-});
-
-
 export default function ResultsScreen() {
   const { imageUri } = useLocalSearchParams();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-   // <-- Explicitly specify type
+
+  const [plantData, setPlantData] = useState<PlantData>({
+    name: '',
+    scientificName: '',
+    edible: false,
+    confidence: 0,
+    description: '',
+    usages: [],
+  });
 
   // Simulated plant identification result
   useEffect(() => {
@@ -37,18 +35,18 @@ export default function ResultsScreen() {
         scientificName: 'Allium ursinum',
         edible: true,
         confidence: 0.95,
-        description: 'Wild garlic, also known as ramsons, is an edible wild plant. Its leaves are used as a herb, and it has a distinctive garlic-like taste but is milder than cultivated garlic.',
+        description:
+          'Wild garlic, also known as ramsons, is an edible wild plant. Its leaves are used as a herb, and it has a distinctive garlic-like taste but is milder than cultivated garlic.',
         usages: [
           'Can be used raw in salads',
           'Makes excellent pesto',
           'Can be cooked like spinach',
-          'Used in soups and sauces'
-        ]
+          'Used in soups and sauces',
+        ],
       });
       setLoading(false);
     }, 2000);
   }, []);
-
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
